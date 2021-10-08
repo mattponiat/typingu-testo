@@ -1,1 +1,2 @@
-Typing test site in progress 👍
+# My personal typing test site
+## Currently in progress 👍
