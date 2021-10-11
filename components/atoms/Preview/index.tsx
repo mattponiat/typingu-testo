@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
-
-import data from "randomWords.json";
-const englishWords = data.english;
+import React from "react";
+//Functions
+import { wordsEng } from "functions/changeWordsAmount";
 
 const Preview: React.FC = () => {
-  const [words, setWords] = useState(englishWords);
   return (
     <div>
-      {words.map((item) => {
-        return <span key={item}>{item} </span>;
+      {wordsEng.map((data) => {
+        return <span key={data}>{data} </span>;
       })}
     </div>
   );
