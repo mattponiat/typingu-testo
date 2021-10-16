@@ -1,14 +1,12 @@
 //Components
-import TextArea from "../components/atoms/TextArea";
-import Preview from "../components/atoms/Preview";
-import Button from "components/atoms/Button";
+import TypingContainer from "components/organisms/TypingContainer/TypingContainer";
 
-export default function Home() {
+const Home: React.FC = () => {
   return (
     <>
-      <Preview />
-      <TextArea />
-      <Button>10</Button>
+      <TypingContainer />
     </>
   );
-}
+};
+
+export default Home;

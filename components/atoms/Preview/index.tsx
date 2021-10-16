@@ -1,14 +1,15 @@
-import React from "react";
-//Functions
-import { wordsEng } from "functions/changeWordsAmount";
+import React, { useContext } from "react";
+import { WordsContext } from "Context/WordsContext";
 
 const Preview: React.FC = () => {
+  const { english } = useContext(WordsContext);
+
   return (
-    <div>
-      {wordsEng.map((data) => {
-        return <span key={data}>{data} </span>;
-      })}
-    </div>
+    <>
+      {english.map((elem) => (
+        <span key={elem}>{elem}</span>
+      ))}
+    </>
   );
 };
 
