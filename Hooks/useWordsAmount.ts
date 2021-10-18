@@ -5,7 +5,7 @@ import wordsData from "randomWords.json";
 export const useWordsAmount = () => {
   const [words, setWordsState] = useContext(WordsContext);
   const tempArray = [] as string[];
-  const lang = "english";
+  const lang = "english"; //Will use localStorage later, for now only English
 
   const numberRandomizer = () => {
     let randomNumber = Math.floor(Math.random() * wordsData[lang].length);
@@ -22,6 +22,7 @@ export const useWordsAmount = () => {
     setWordsState(tempArray);
   }, []);
 
+  //Randomize and set words for the buttons
   const setWordsAmount = (amount: number) => {
     if (words) {
       for (let i = 0; i < amount; i++) {
