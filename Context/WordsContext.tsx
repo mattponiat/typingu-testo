@@ -1,8 +1,19 @@
-import { createContext } from "react";
-import words from "randomWords.json";
+import React, { useState, createContext } from 'react';
+import words from 'randomWords.json';
 
-interface WordsType {
-  english: string[];
-}
+type stateUpdateType = React.Dispatch<React.SetStateAction<string[]>>;
 
-export const WordsContext = createContext<WordsType>(words);
+type contextType = [string[], stateUpdateType];
+
+// Default value error, the code works for now but might need to change this in the future
+export const WordsContext = createContext<contextType>();
+
+export const WordsProvider: React.FC = ({ children }) => {
+    const [wordsState, setWordsState] = useState(words.english);
+
+    return (
+        <WordsContext.Provider value={[wordsState, setWordsState]}>
+            {children}
+        </WordsContext.Provider>
+    );
+};
