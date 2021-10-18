@@ -10,10 +10,12 @@ const TypingContainer: React.FC = () => {
     <>
       <Preview />
       <TextArea />
-      <Button onClick={() => setWordsAmount(10)}>10</Button>
-      <Button onClick={() => setWordsAmount(25)}>25</Button>
-      <Button onClick={() => setWordsAmount(50)}>50</Button>
-      <Button onClick={() => setWordsAmount(100)}>100</Button>
+      <div>
+        <Button onClick={() => setWordsAmount(10)}>10</Button>
+        <Button onClick={() => setWordsAmount(25)}>25</Button>
+        <Button onClick={() => setWordsAmount(50)}>50</Button>
+        <Button onClick={() => setWordsAmount(100)}>100</Button>
+      </div>
     </>
   );
 };
