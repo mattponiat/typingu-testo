@@ -1,16 +1,16 @@
-import React, { useContext } from "react";
-import { WordsContext } from "Context/WordsContext";
+import React, { useContext } from 'react';
+import { WordsContext } from 'context/WordsContext';
 
 const Preview: React.FC = () => {
-  const { english } = useContext(WordsContext);
+    const [words] = useContext(WordsContext);
 
-  return (
-    <>
-      {english.map((elem) => (
-        <span key={elem}>{elem}</span>
-      ))}
-    </>
-  );
+    return (
+        <>
+            {words.map((elem) => (
+                <span key={elem}>{elem}</span>
+            ))}
+        </>
+    );
 };
 
 export default Preview;
