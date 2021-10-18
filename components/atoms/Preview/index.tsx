@@ -5,11 +5,11 @@ const Preview: React.FC = () => {
   const [words] = useContext(WordsContext);
 
   return (
-    <>
+    <div>
       {words.map((elem, i) => (
         <span key={elem + i}>{elem} </span>
       ))}
-    </>
+    </div>
   );
 };
 
