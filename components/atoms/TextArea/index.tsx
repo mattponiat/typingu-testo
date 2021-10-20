@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 
-const TextArea: React.FC = () => {
-  const [text, setText] = useState("");
+interface Props {
+  value: string;
+  onChange?: (e: any) => void;
+}
+
+const TextArea: React.FC<Props> = (...props) => {
   return (
-    <div>
-      <textarea
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-      ></textarea>
-    </div>
+    <>
+      <textarea defaultValue="" {...props} />
+    </>
   );
 };
 

@@ -12,6 +12,7 @@ const SetOfButtons = () => {
       <Button onClick={() => setWordsAmount(25)}>25</Button>
       <Button onClick={() => setWordsAmount(50)}>50</Button>
       <Button onClick={() => setWordsAmount(100)}>100</Button>
+      {/* <Button onClick={() => resetWords()}>Reset</Button> */}
     </div>
   );
 };
