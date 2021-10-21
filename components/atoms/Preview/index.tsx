@@ -1,26 +1,30 @@
 import React, { useContext } from "react";
+//Styles
 import styled from "styled-components";
+//Context
 import { WordsContext } from "context/WordsContext";
 
 const Preview: React.FC = () => {
   const [words] = useContext(WordsContext);
 
-  return (
-    <Wrapper>
-      {words.map((elem, i) => (
-        <span key={elem + i}>{elem} </span>
-      ))}
-    </Wrapper>
-  );
+  const previewText = words.map((elem, i) => (
+    <Text key={`${elem} ${i}`}>{elem} </Text>
+  ));
+
+  return <Wrapper>{previewText}</Wrapper>;
 };
 
-const Wrapper = styled.div`
-  border: 1px solid black;
-  border-radius: 5px;
+//Styled components
+const Text = styled.span`
+  font-size: 17px;
+`;
 
-  span {
-    font-size: 16px;
-  }
+const Wrapper = styled.div`
+  border: none;
+  border-radius: 5px;
+  width: 40vw;
+  text-align: justify;
+  line-height: 27px;
 `;
 
 export default Preview;
