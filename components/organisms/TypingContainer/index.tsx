@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 //Components
 import TextArea from "components/atoms/TextArea";
 import Preview from "components/atoms/Preview";
@@ -6,9 +6,15 @@ import SetOfButtons from "components/molecules/SetOfButtons";
 import Button from "components/atoms/Button";
 //Styles
 import styled from "styled-components";
+//Hooks
+import { useWordsAmount } from "hooks/useWordsAmount";
+//Context
+import { WordsContext } from "context/WordsContext";
 
 const TypingContainer: React.FC = () => {
   const [text, setText] = useState("");
+  const { setWordsAmount } = useWordsAmount();
+  const [words] = useContext(WordsContext);
 
   const handleUserInput = (e: any) => {
     setText(e.target.value);
@@ -16,6 +22,12 @@ const TypingContainer: React.FC = () => {
 
   const resetUserInput = () => {
     setText("");
+
+    for (let i = 1; i < words.length; i++) {
+      if (words.length === i + 1) {
+        setWordsAmount(i + 1);
+      }
+    }
   };
 
   return (
