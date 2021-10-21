@@ -1,6 +1,8 @@
 //Components
 import TypingContainer from "components/organisms/TypingContainer";
 import { WordsProvider } from "context/WordsContext";
+//GlobalStyle
+import { GlobalStyle } from "components/globalStyle/globalStyle";
 
 const Home: React.FC = () => {
   return (
@@ -8,6 +10,7 @@ const Home: React.FC = () => {
       <WordsProvider>
         <TypingContainer />
       </WordsProvider>
+      <GlobalStyle />
     </>
   );
 };
