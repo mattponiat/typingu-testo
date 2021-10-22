@@ -23,9 +23,9 @@ const TypingContainer: React.FC = () => {
   const resetUserInput = () => {
     setText("");
 
-    for (let i = 1; i < words.length; i++) {
-      if (words.length === i + 1) {
-        setWordsAmount(i + 1);
+    for (let i = 0; i < words.length + 1; i++) {
+      if (words.length === i) {
+        setWordsAmount(i);
       }
     }
   };
