@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 //Components
-import TextArea from "components/atoms/TextArea";
 import Preview from "components/atoms/Preview";
 import SetOfButtons from "components/molecules/SetOfButtons";
 import Button from "components/atoms/Button";
@@ -12,17 +11,13 @@ import { useWordsAmount } from "hooks/useWordsAmount";
 import { WordsContext } from "context/WordsContext";
 
 const TypingContainer: React.FC = () => {
-  const [text, setText] = useState("");
   const { setWordsAmount } = useWordsAmount();
   const [words] = useContext(WordsContext);
 
-  const handleUserInput = (e: any) => {
-    setText(e.target.value);
-  };
-
   const resetUserInput = () => {
-    setText("");
+    //Add actual reset
 
+    //Randomizes words in the preview
     for (let i = 0; i < words.length + 1; i++) {
       if (words.length === i) {
         setWordsAmount(i);
@@ -33,10 +28,9 @@ const TypingContainer: React.FC = () => {
   return (
     <Wrapper>
       <Preview />
-      <TextAndReset>
-        <TextArea value={text} onChange={handleUserInput} />
+      <ResetButton>
         <Button onClick={resetUserInput}>Reset</Button>
-      </TextAndReset>
+      </ResetButton>
       <SetOfButtons />
     </Wrapper>
   );
@@ -49,7 +43,7 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
-const TextAndReset = styled.div`
+const ResetButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
