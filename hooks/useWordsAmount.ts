@@ -30,6 +30,7 @@ export const useWordsAmount = () => {
       }
     }
     setWordsState(tempArray);
+    console.log(`set context state to ${JSON.stringify(tempArray)}`);
     return;
   };
 

@@ -7,31 +7,35 @@ import { WordsContext } from "context/WordsContext";
 import { useEventListener } from "hooks/useEventListener";
 
 const Preview: React.FC = () => {
-  const [words] = useContext(WordsContext);
-  const [key, setKey] = useState("");
-
-  useEventListener("keydown", (e: KeyboardEvent) => {
-    setKey(e.key);
-  });
-
-  const previewText = words.map((elem, i) => (
-    <Text key={`${elem} ${i}`}>{elem} </Text>
-  ));
-
-  const WordCheker = () => {
-    const newText = previewText
-      .map((e) => e.props.children[0])
-      .join(" ")
-      .split("");
-
-    console.log(newText);
-  };
+  const [words, setWords] = useContext(WordsContext);
+  const [lettersFromWords, setLettersFromWords] = useState(
+    words.join(" ").split("")
+  );
 
   useEffect(() => {
-    WordCheker();
-  }, [key, previewText]);
+    setLettersFromWords(words.join(" ").split(""));
+  }, [words]);
 
-  return <Wrapper>{previewText}</Wrapper>;
+  useEventListener("keydown", (e: KeyboardEvent) => {
+    WordCheker(e.key);
+  });
+
+  const WordCheker = (key: string) => {
+    if (key === lettersFromWords[0]) {
+      const remainingLetters = [...lettersFromWords];
+      remainingLetters.shift();
+      console.log(remainingLetters);
+      setLettersFromWords([...remainingLetters]);
+    }
+  };
+
+  return (
+    <Wrapper>
+      {words.map((elem, i) => (
+        <Text key={`${elem} ${i}`}>{elem} </Text>
+      ))}
+    </Wrapper>
+  );
 };
 
 //Styled components
