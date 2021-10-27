@@ -11,7 +11,6 @@ import { useWordsAmount } from "hooks/useWordsAmount";
 import { WordsContext } from "context/WordsContext";
 
 const TypingContainer: React.FC = () => {
-  const focusRef = useRef();
   const { setWordsAmount } = useWordsAmount();
   const [words] = useContext(WordsContext);
 
