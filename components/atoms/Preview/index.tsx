@@ -11,12 +11,12 @@ const Preview: React.FC = () => {
   const [lettersFromWords, setLettersFromWords] = useState<string[]>(
     words.join(" ").split("")
   );
-  const correctLetters = useRef<string[]>([]);
+  const [correctLetters, setCorrectLetters] = useState<string[]>([]);
   const [incorrectLetters, setIncorrectLetters] = useState<string[]>([]);
 
   useEffect(() => {
     setLettersFromWords(words.join(" ").split(""));
-    correctLetters.current = [];
+    setCorrectLetters([]);
     setIncorrectLetters([]);
   }, [words]);
 
@@ -41,9 +41,9 @@ const Preview: React.FC = () => {
       const remainingLetters = [...lettersFromWords];
       remainingLetters.shift();
       setLettersFromWords([...remainingLetters]);
-      const correctLettersCopy = [...correctLetters.current];
+      const correctLettersCopy = [...correctLetters];
       correctLettersCopy.push(key);
-      correctLetters.current = correctLettersCopy;
+      setCorrectLetters(correctLettersCopy);
     } else {
       const incorrectLettersCopy = [...incorrectLetters];
       incorrectLettersCopy.push(key);
@@ -53,7 +53,7 @@ const Preview: React.FC = () => {
 
   return (
     <Wrapper>
-      {correctLetters.current.map((letter, i) => (
+      {correctLetters.map((letter, i) => (
         <CorrectText key={letter + i}>{letter}</CorrectText>
       ))}
       {incorrectLetters.map((letter, i) => (
