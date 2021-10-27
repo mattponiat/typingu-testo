@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 //Styles
 import styled from "styled-components";
 //Context
@@ -11,12 +11,12 @@ const Preview: React.FC = () => {
   const [lettersFromWords, setLettersFromWords] = useState<string[]>(
     words.join(" ").split("")
   );
-  const [correctLetters, setCorrectLetters] = useState<string[]>([]);
+  const correctLetters = useRef<string[]>([]);
   const [incorrectLetters, setIncorrectLetters] = useState<string[]>([]);
 
   useEffect(() => {
     setLettersFromWords(words.join(" ").split(""));
-    setCorrectLetters([]);
+    correctLetters.current = [];
     setIncorrectLetters([]);
   }, [words]);
 
@@ -41,9 +41,9 @@ const Preview: React.FC = () => {
       const remainingLetters = [...lettersFromWords];
       remainingLetters.shift();
       setLettersFromWords([...remainingLetters]);
-      const correctLettersCopy = [...correctLetters];
+      const correctLettersCopy = [...correctLetters.current];
       correctLettersCopy.push(key);
-      setCorrectLetters(correctLettersCopy);
+      correctLetters.current = correctLettersCopy;
     } else {
       const incorrectLettersCopy = [...incorrectLetters];
       incorrectLettersCopy.push(key);
@@ -53,12 +53,13 @@ const Preview: React.FC = () => {
 
   return (
     <Wrapper>
-      {correctLetters.map((letter, i) => (
+      {correctLetters.current.map((letter, i) => (
         <CorrectText key={letter + i}>{letter}</CorrectText>
       ))}
       {incorrectLetters.map((letter, i) => (
         <IncorrectText key={letter + i}>{letter}</IncorrectText>
       ))}
+      <Caret></Caret>
       {lettersFromWords
         .join("")
         .split("")
@@ -70,6 +71,13 @@ const Preview: React.FC = () => {
 };
 
 //Styled components
+const Caret = styled.span`
+  width: 2px;
+  height: 16px;
+  background-color: hsl(200, 100%, 50%);
+  position: absolute;
+`;
+
 const Text = styled.span`
   font-size: 17px;
 `;
@@ -85,6 +93,7 @@ const CorrectText = styled(Text)`
 `;
 
 const Wrapper = styled.pre`
+  position: relative;
   white-space: pre-wrap;
   word-wrap: break-word;
   border: none;
