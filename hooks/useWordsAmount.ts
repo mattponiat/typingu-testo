@@ -14,8 +14,10 @@ export const useWordsAmount = () => {
 
   //Randomize words on site load
   useEffect(() => {
+    const availableWords = wordsData[lang].length;
+    const amount = availableWords >= 100 ? 100 : availableWords;
     if (words) {
-      for (let i = 0; i < wordsData[lang].length; i++) {
+      for (let i = 0; i < amount; i++) {
         tempArray.push(wordsData[lang][numberRandomizer()]);
       }
     }
@@ -30,7 +32,6 @@ export const useWordsAmount = () => {
       }
     }
     setWordsState(tempArray);
-    console.log(`set context state to ${JSON.stringify(tempArray)}`);
     return;
   };
 

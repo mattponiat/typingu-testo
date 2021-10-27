@@ -10,7 +10,7 @@ export const WordsContext = createContext<contextType>(
 );
 
 export const WordsProvider: React.FC = ({ children }) => {
-  const [wordsState, setWordsState] = useState(words.english);
+  const [wordsState, setWordsState] = useState<string[]>([]);
 
   return (
     <WordsContext.Provider value={[wordsState, setWordsState]}>
