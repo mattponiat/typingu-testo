@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef, useEffect } from "react";
 //Components
 import Preview from "components/atoms/Preview";
 import SetOfButtons from "components/molecules/SetOfButtons";
@@ -11,12 +11,11 @@ import { useWordsAmount } from "hooks/useWordsAmount";
 import { WordsContext } from "context/WordsContext";
 
 const TypingContainer: React.FC = () => {
+  const focusRef = useRef();
   const { setWordsAmount } = useWordsAmount();
   const [words] = useContext(WordsContext);
 
   const resetUserInput = () => {
-    //Add actual reset
-
     //Randomizes words in the preview
     for (let i = 0; i < words.length + 1; i++) {
       if (words.length === i) {

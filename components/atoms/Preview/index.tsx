@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useRef } from "react";
+import React, { useContext, useEffect, useState } from "react";
 //Styles
 import styled from "styled-components";
 //Context
@@ -7,7 +7,7 @@ import { WordsContext } from "context/WordsContext";
 import { useEventListener } from "hooks/useEventListener";
 
 const Preview: React.FC = () => {
-  const [words, setWords] = useContext(WordsContext);
+  const [words] = useContext(WordsContext);
   const [lettersFromWords, setLettersFromWords] = useState<string[]>(
     words.join(" ").split("")
   );
@@ -72,8 +72,10 @@ const Preview: React.FC = () => {
 
 //Styled components
 const Caret = styled.span`
+  margin: 0;
+  padding: 0;
   width: 2px;
-  height: 16px;
+  height: 25px;
   background-color: hsl(200, 100%, 50%);
   position: absolute;
 `;
