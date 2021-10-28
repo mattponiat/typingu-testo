@@ -11,10 +11,17 @@ import { useWordsAmount } from "hooks/useWordsAmount";
 import { WordsContext } from "context/WordsContext";
 
 const TypingContainer: React.FC = () => {
+  const focusRef = useRef<HTMLDivElement>(null);
   const { setWordsAmount } = useWordsAmount();
   const [words] = useContext(WordsContext);
 
-  const resetUserInput = () => {
+  const handleFocus = () => {
+    if (null !== focusRef.current) {
+      focusRef.current.focus();
+    }
+  };
+
+  const restartTest = () => {
     //Randomizes words in the preview
     for (let i = 0; i < words.length + 1; i++) {
       if (words.length === i) {
@@ -23,11 +30,22 @@ const TypingContainer: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    handleFocus();
+  }, [words]);
+
   return (
     <Wrapper>
-      <Preview />
       <ResetButton>
-        <Button onClick={resetUserInput}>Reset</Button>
+        <Preview />
+        <Button
+          onClick={() => {
+            handleFocus();
+            restartTest();
+          }}
+        >
+          Redo
+        </Button>
       </ResetButton>
       <SetOfButtons />
     </Wrapper>
@@ -50,10 +68,11 @@ const ResetButton = styled.div`
     border: none;
     background: none;
     padding: 5px 10px;
-    margin: 3px;
+    margin-left: 15px;
     cursor: pointer;
-    font-size: 14px;
-    font-weight: 400;
+    font-size: 17px;
+    font-weight: 500;
+    color: hsl(150, 100%, 40%);
   }
 `;
 

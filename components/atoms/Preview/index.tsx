@@ -72,26 +72,35 @@ const Preview: React.FC = () => {
 
 //Styled components
 const Caret = styled.span`
-  margin: 0;
-  padding: 0;
-  width: 2px;
-  height: 25px;
-  background-color: hsl(200, 100%, 50%);
   position: absolute;
+  margin: 0;
+  padding: 15px 1px;
+  border: 1px solid hsl(150, 100%, 40%);
+  border-radius: 5px;
+  background-color: hsl(150, 100%, 40%);
+  animation: fading 0.7s infinite alternate;
+
+  @keyframes fading {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 0.8;
+    }
+  }
 `;
 
 const Text = styled.span`
-  font-size: 17px;
+  font-size: 20px;
+  font-weight: 600;
 `;
 
 const IncorrectText = styled(Text)`
   background-color: red;
   color: white;
-  font-weight: 700;
 `;
 const CorrectText = styled(Text)`
   color: green;
-  font-weight: 700;
 `;
 
 const Wrapper = styled.pre`

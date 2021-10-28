@@ -25,7 +25,6 @@ const Wrapper = styled.div`
   width: 15vw;
   min-height: auto;
   margin: 3px;
-  padding: 10px 15px;
 
   button {
     border: none;
@@ -34,7 +33,6 @@ const Wrapper = styled.div`
     margin: 3px;
     cursor: pointer;
     font-size: 14px;
-    font-weight: 400;
   }
 
   button:hover {
