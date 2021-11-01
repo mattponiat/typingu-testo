@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 //Components
 import Button from "components/atoms/Button";
 //Hooks
@@ -30,12 +30,16 @@ const Wrapper = styled.div`
     border: none;
     background: none;
     padding: 5px 10px;
-    margin: 3px;
+    margin-left: 15px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 17px;
+    font-weight: 500;
+    color: hsl(150, 100%, 40%);
   }
 
-  button:hover {
+  button:hover,
+  button:visited,
+  button:focus {
     color: hsl(0, 0%, 60%);
   }
 `;
