@@ -2,20 +2,23 @@ import { useEffect, useRef } from "react";
 
 export const useEventListener = (
   eventType: string,
-  callback: (e: KeyboardEvent) => void
+  handler: (e: KeyboardEvent) => void
 ) => {
   let element: Window & typeof globalThis;
-  const callbackRef = useRef(callback);
-
-  useEffect(() => {
-    callbackRef.current = callback;
-  }, [callback]);
+  const handlerRef = useRef(handler);
 
   useEffect(() => {
     element = window;
-    const handler = (e: any) => callbackRef.current(e);
-    element.addEventListener(eventType, handler);
+    handlerRef.current = handler;
+  });
 
-    return () => element.removeEventListener(eventType, handler);
+  useEffect(() => {
+    function internalHandler(e: any) {
+      return handlerRef.current(e);
+    }
+
+    document.addEventListener(eventType, internalHandler);
+
+    return () => document.removeEventListener(eventType, internalHandler);
   }, [eventType]);
 };
