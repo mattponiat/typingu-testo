@@ -1,15 +1,13 @@
-import React, { useState, createContext } from "react";
-import words from "randomWords.json";
+import * as React from "react";
+import { useState, createContext } from "react";
 
 type stateUpdateType = React.Dispatch<React.SetStateAction<string[]>>;
 
 type contextType = [string[], stateUpdateType];
 
-export const WordsContext = createContext<contextType>(
-  [] as unknown as contextType
-);
+export const WordsContext = createContext<contextType | null>(null);
 
-export const WordsProvider: React.FC = ({ children }) => {
+export const WordsProvider = ({ children }: { children: React.ReactNode }) => {
   const [wordsState, setWordsState] = useState<string[]>([]);
 
   return (
