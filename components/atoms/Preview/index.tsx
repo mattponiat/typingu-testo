@@ -1,4 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import * as React from "react";
+import { useContext, useEffect, useState } from "react";
 //Styles
 import styled from "styled-components";
 //Context
@@ -6,11 +7,9 @@ import { WordsContext } from "context/WordsContext";
 //Hooks
 import { useEventListener } from "hooks/useEventListener";
 
-const Preview: React.FC = () => {
-  const [words] = useContext(WordsContext);
-  const [lettersFromWords, setLettersFromWords] = useState<string[]>(
-    words.join(" ").split("")
-  );
+const Preview: React.FC = (...props) => {
+  const [words] = useContext(WordsContext)!;
+  const [lettersFromWords, setLettersFromWords] = useState<string[]>(words);
   const [correctLetters, setCorrectLetters] = useState<string[]>([]);
   const [incorrectLetters, setIncorrectLetters] = useState<string[]>([]);
 
@@ -27,14 +26,16 @@ const Preview: React.FC = () => {
   });
 
   const WordCheker = (e: KeyboardEvent) => {
+    const key = e.key;
+
     if (incorrectLetters.length > 0) {
-      if (e.code === "Backspace") {
+      if (key === "Backspace" || key === "Delete") {
         const incorrectLettersCopy = [...incorrectLetters];
         incorrectLettersCopy.pop();
         setIncorrectLetters(incorrectLettersCopy);
       }
     }
-    const key = e.key;
+
     if (e.code.slice(0, 3) !== "Key" && e.code.slice(0, 3) !== "Spa") return;
 
     if (key === lettersFromWords[0] && incorrectLetters.length === 0) {
@@ -52,33 +53,41 @@ const Preview: React.FC = () => {
   };
 
   return (
-    <Wrapper>
+    <Wrapper {...props}>
       {correctLetters.map((letter, i) => (
-        <CorrectText key={letter + i}>{letter}</CorrectText>
+        <CorrectText key={`${letter} ${i}`}>{letter}</CorrectText>
       ))}
       {incorrectLetters.map((letter, i) => (
-        <IncorrectText key={letter + i}>{letter}</IncorrectText>
+        <IncorrectText key={`${letter} ${i}`}>{letter}</IncorrectText>
       ))}
       <Caret></Caret>
-      {lettersFromWords
-        .join("")
-        .split("")
-        .map((elem, i) => (
-          <Text key={`${elem} ${i}`}>{elem}</Text>
-        ))}
+      {lettersFromWords.map((letter, i) => (
+        <Text key={`${letter} ${i}`}>{letter}</Text>
+      ))}
     </Wrapper>
   );
 };
 
 //Styled components
+
+const Wrapper = styled.p`
+  position: relative;
+  white-space: pre-wrap;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+  max-width: 35vw;
+  text-align: justify;
+  line-height: 27px;
+`;
+
 const Caret = styled.span`
   position: absolute;
   margin: 0;
   padding: 15px 1px;
-  border: 1px solid hsl(150, 100%, 40%);
-  border-radius: 5px;
   background-color: hsl(150, 100%, 40%);
   animation: fading 0.7s infinite alternate;
+  word-wrap: break-word;
 
   @keyframes fading {
     from {
@@ -91,27 +100,19 @@ const Caret = styled.span`
 `;
 
 const Text = styled.span`
-  font-size: 20px;
+  font-size: 25px;
   font-weight: 600;
+  word-wrap: break-word;
 `;
 
 const IncorrectText = styled(Text)`
   background-color: red;
   color: white;
+  word-wrap: break-word;
 `;
 const CorrectText = styled(Text)`
   color: green;
-`;
-
-const Wrapper = styled.pre`
-  position: relative;
-  white-space: pre-wrap;
   word-wrap: break-word;
-  border: none;
-  border-radius: 5px;
-  width: 40vw;
-  text-align: justify;
-  line-height: 27px;
 `;
 
 export default Preview;
