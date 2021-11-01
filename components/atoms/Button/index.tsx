@@ -7,11 +7,7 @@ interface Props {
 }
 
 const Button: React.FC<Props> = ({ children, ...props }) => {
-  return (
-    <div>
-      <button {...props}>{children}</button>
-    </div>
-  );
+  return <button {...props}>{children}</button>;
 };
 
 export default Button;
