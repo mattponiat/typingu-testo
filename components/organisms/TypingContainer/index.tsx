@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useContext, useRef, useEffect } from "react";
+import { useContext } from "react";
 //Components
 import Preview from "components/atoms/Preview";
 import SetOfButtons from "components/molecules/SetOfButtons";
@@ -12,7 +12,6 @@ import { useWordsAmount } from "hooks/useWordsAmount";
 import { WordsContext } from "context/WordsContext";
 
 const TypingContainer: React.FC = () => {
-  const focusRef = useRef<HTMLDivElement>(null);
   const { setWordsAmount } = useWordsAmount();
   const [words] = useContext(WordsContext)!;
 
@@ -25,20 +24,13 @@ const TypingContainer: React.FC = () => {
     }
   };
 
-  const handleFocus = () => {
-    if (focusRef !== null) {
-      focusRef?.current?.focus();
-    }
-  };
-
   return (
-    <Wrapper ref={focusRef}>
+    <Wrapper>
       <ResetAndPreview>
         <Preview />
         <Button
           onClick={() => {
             restartTest();
-            handleFocus();
           }}
         >
           Redo
@@ -61,7 +53,7 @@ const Wrapper = styled.div`
 const ResetAndPreview = styled.div`
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
 
   button {
     border: none;
@@ -75,8 +67,7 @@ const ResetAndPreview = styled.div`
   }
 
   button:hover,
-  button:visited,
-  button:focus {
+  button:focus-visible {
     color: hsl(0, 0%, 60%);
   }
 `;

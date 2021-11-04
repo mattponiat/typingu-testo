@@ -8,11 +8,11 @@ export const useEventListener = (
   const handlerRef = useRef(handler);
 
   useEffect(() => {
-    element = window;
     handlerRef.current = handler;
   });
 
   useEffect(() => {
+    element = window;
     function internalHandler(e: any) {
       return handlerRef.current(e);
     }
