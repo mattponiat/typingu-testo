@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { WordsContext } from "context/WordsContext";
 //Hooks
 import { useEventListener } from "hooks/useEventListener";
-import { useWordCheker } from "hooks/useWordChecker";
+import { WordCheker } from "hooks/WordChecker";
 
 const Preview: React.FC = () => {
   const [words] = useContext(WordsContext)!;
@@ -23,7 +23,7 @@ const Preview: React.FC = () => {
 
   useEventListener("keydown", (e: KeyboardEvent) => {
     if (lettersFromWords.length) {
-      useWordCheker(
+      WordCheker(
         e,
         correctLetters,
         setCorrectLetters,
@@ -33,27 +33,26 @@ const Preview: React.FC = () => {
         setLettersFromWords
       );
     }
-    if (e.code !== "Enter") {
+    if (e.code !== "Enter" && e.code !== "Tab") {
       focusRef.current?.focus();
-      console.log(focusRef);
     }
   });
 
   return (
     <Wrapper ref={focusRef} tabIndex={0}>
-      {correctLetters.map(
-        (letter, i) =>
-          correctLetters && (
-            <CorrectText key={`${letter} ${i}`}>{letter}</CorrectText>
-          )
-      )}
-      {incorrectLetters.map((letter, i) => (
-        <IncorrectText key={`${letter} ${i}`}>{letter}</IncorrectText>
-      ))}
+      {correctLetters &&
+        correctLetters.map((letter, i) => (
+          <CorrectText key={`${letter} ${i}`}>{letter}</CorrectText>
+        ))}
+      {incorrectLetters &&
+        incorrectLetters.map((letter, i) => (
+          <IncorrectText key={`${letter} ${i}`}>{letter}</IncorrectText>
+        ))}
       <Caret></Caret>
-      {lettersFromWords.map((letter, i) => (
-        <Text key={`${letter} ${i}`}>{letter}</Text>
-      ))}
+      {lettersFromWords &&
+        lettersFromWords.map((letter, i) => (
+          <Text key={`${letter} ${i}`}>{letter}</Text>
+        ))}
     </Wrapper>
   );
 };
@@ -70,7 +69,7 @@ const Wrapper = styled.p`
   text-align: justify;
   line-height: 27px;
 
-  :focus {
+  :focus-visible {
     outline: none;
   }
 `;

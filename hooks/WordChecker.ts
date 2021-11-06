@@ -1,4 +1,4 @@
-export const useWordCheker = (
+export const WordCheker = (
   e: any,
   correctLetters: any,
   setCorrectLetters: any,
