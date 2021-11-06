@@ -5,54 +5,25 @@ import styled from "styled-components";
 //Context
 import { WordsContext } from "context/WordsContext";
 //Hooks
-import { useEventListener } from "hooks/useEventListener";
-import { WordCheker } from "hooks/WordChecker";
+import { usePreview } from "hooks/usePreview";
 
 const Preview: React.FC = () => {
   const [words] = useContext(WordsContext)!;
-  const [lettersFromWords, setLettersFromWords] = useState<string[]>(words);
-  const [correctLetters, setCorrectLetters] = useState<string[]>([]);
-  const [incorrectLetters, setIncorrectLetters] = useState<string[]>([]);
   const focusRef = useRef<HTMLDivElement>(null)!;
 
-  useEffect(() => {
-    setLettersFromWords(words.join(" ").split(""));
-    setCorrectLetters([]);
-    setIncorrectLetters([]);
-  }, [words]);
-
-  useEventListener("keydown", (e: KeyboardEvent) => {
-    if (lettersFromWords.length) {
-      WordCheker(
-        e,
-        correctLetters,
-        setCorrectLetters,
-        incorrectLetters,
-        setIncorrectLetters,
-        lettersFromWords,
-        setLettersFromWords
-      );
-    }
-    if (e.code !== "Enter" && e.code !== "Tab") {
-      focusRef.current?.focus();
-    }
-  });
+  const { correctLetters, incorrectLetters, lettersFromWords } = usePreview(
+    focusRef,
+    words
+  );
 
   return (
     <Wrapper ref={focusRef} tabIndex={0}>
-      {correctLetters &&
-        correctLetters.map((letter, i) => (
-          <CorrectText key={`${letter} ${i}`}>{letter}</CorrectText>
-        ))}
-      {incorrectLetters &&
-        incorrectLetters.map((letter, i) => (
-          <IncorrectText key={`${letter} ${i}`}>{letter}</IncorrectText>
-        ))}
+      <CorrectText>{correctLetters && correctLetters.join("")}</CorrectText>
+      <IncorrectText>
+        {incorrectLetters && incorrectLetters.join("")}
+      </IncorrectText>
       <Caret></Caret>
-      {lettersFromWords &&
-        lettersFromWords.map((letter, i) => (
-          <Text key={`${letter} ${i}`}>{letter}</Text>
-        ))}
+      <Text>{lettersFromWords && lettersFromWords.join("")}</Text>
     </Wrapper>
   );
 };
@@ -65,7 +36,7 @@ const Wrapper = styled.p`
   border-radius: 5px;
   margin: 5px;
   padding: 5px;
-  max-width: 35vw;
+  max-width: 35rem;
   text-align: justify;
   line-height: 27px;
 
