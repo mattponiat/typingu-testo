@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useEventListener } from "./useEventListener";
-import { WordCheker } from "./WordChecker";
+import { WordCheker } from "functions/WordChecker";
 
 export const usePreview = (ref: any, words: string[]) => {
   const [lettersFromWords, setLettersFromWords] = useState<string[]>(words);
