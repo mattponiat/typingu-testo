@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useContext, useEffect, useState, useRef } from "react";
+import { useContext, useRef } from "react";
 //Styles
 import styled from "styled-components";
 //Context
