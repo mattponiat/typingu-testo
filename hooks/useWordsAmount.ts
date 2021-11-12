@@ -1,5 +1,7 @@
 import { useContext, useEffect } from "react";
+//Context
 import { WordsContext } from "context/WordsContext";
+//JSON
 import wordsData from "randomWords.json";
 
 export const useWordsAmount = () => {
