@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
+//Hooks
 import { useEventListener } from "./useEventListener";
+//Functions
 import { WordCheker } from "functions/WordChecker";
 
-export const usePreview = (ref: any, words: string[]) => {
+export const useTyping = (ref: any, words: string[]) => {
   const [lettersFromWords, setLettersFromWords] = useState<string[]>(words);
   const [correctLetters, setCorrectLetters] = useState<string[]>([]);
   const [incorrectLetters, setIncorrectLetters] = useState<string[]>([]);
