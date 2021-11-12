@@ -5,13 +5,13 @@ import styled from "styled-components";
 //Context
 import { WordsContext } from "context/WordsContext";
 //Hooks
-import { usePreview } from "hooks/usePreview";
+import { useTyping } from "hooks/useTyping";
 
 const Preview: React.FC = () => {
   const [words] = useContext(WordsContext)!;
   const focusRef = useRef<HTMLDivElement>(null)!;
 
-  const { correctLetters, incorrectLetters, lettersFromWords } = usePreview(
+  const { correctLetters, incorrectLetters, lettersFromWords } = useTyping(
     focusRef,
     words
   );
@@ -22,22 +22,20 @@ const Preview: React.FC = () => {
       <IncorrectText>
         {incorrectLetters && incorrectLetters.join("")}
       </IncorrectText>
-      <Caret></Caret>
-      <Text>{lettersFromWords && lettersFromWords.join("")}</Text>
+      <Caret />
+      <Text>{lettersFromWords.join("")}</Text>
     </Wrapper>
   );
 };
 
 //Styled components
 
-const Wrapper = styled.p`
+const Wrapper = styled.div`
   position: relative;
   white-space: pre-wrap;
   border-radius: 5px;
   margin: 5px;
-  padding: 5px;
   max-width: 35rem;
-  text-align: justify;
   line-height: 27px;
 
   :focus-visible {
@@ -64,12 +62,14 @@ const Caret = styled.span`
 `;
 
 const Text = styled.span`
-  font-size: 25px;
+  font-size: 28px;
   font-weight: 600;
   word-wrap: break-word;
 `;
 
 const IncorrectText = styled(Text)`
+  position: absolute;
+  min-height: auto;
   background-color: red;
   color: white;
   word-wrap: break-word;
