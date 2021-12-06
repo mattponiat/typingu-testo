@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 //Components
 import StyledCorrectText from "components-ui/atoms/StyledCorrectText";
 import StyledIncorrectText from "components-ui/atoms/StyledIncorrectText";
@@ -12,8 +12,14 @@ import { useTypingContext } from "context/store";
 
 const Preview: React.FC = () => {
   const focusRef = useRef<HTMLDivElement>(null)!;
-  const { correctLetters, incorrectLetters, lettersFromWords } =
+  const { lettersFromWords, correctLetters, incorrectLetters } =
     useTypingContext();
+
+  /*
+  if (e.code !== "Enter") {
+      ref?.current?.focus();
+    }
+  */
 
   return (
     <Wrapper ref={focusRef} tabIndex={0}>
