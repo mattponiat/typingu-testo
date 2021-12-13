@@ -10,7 +10,7 @@ import styled from "styled-components";
 import { useWordsAmount } from "hooks/useWordsAmount";
 //Context
 import { WordsContext } from "context/WordsContext";
-import { useTypingContext } from "context/store";
+import { useTypingContext } from "context/TypingCheck";
 
 const TypingContainer: React.FC = () => {
   const { setWordsAmount } = useWordsAmount();

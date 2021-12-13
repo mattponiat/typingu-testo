@@ -2,7 +2,7 @@
 import TypingContainer from "components-ui/organisms/TypingContainer";
 //Context
 import { WordsProvider } from "context/WordsContext";
-import { TypingProvider } from "context/store";
+import { TypingProvider } from "context/TypingCheck";
 //GlobalStyle
 import { GlobalStyle } from "components-ui/globalStyle/globalStyle";
 

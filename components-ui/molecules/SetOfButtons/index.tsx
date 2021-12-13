@@ -5,7 +5,7 @@ import Button from "components-ui/atoms/Button";
 import { useWordsAmount } from "hooks/useWordsAmount";
 //Styles
 import styled from "styled-components";
-import { useTypingContext } from "context/store";
+import { useTypingContext } from "context/TypingCheck";
 
 const SetOfButtons = () => {
   const { setWordsAmount } = useWordsAmount();

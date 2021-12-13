@@ -10,7 +10,7 @@ import styled from "styled-components";
 //Hooks
 import { useEventListener } from "hooks/useEventListener";
 //Context
-import { useTypingContext } from "context/store";
+import { useTypingContext } from "context/TypingCheck";
 
 const Preview: React.FC = () => {
   const focusRef = useRef<HTMLDivElement>(null)!;

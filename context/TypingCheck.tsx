@@ -7,7 +7,7 @@ import { WordCheker } from "functions/WordChecker";
 //Context
 import { WordsContext } from "./WordsContext";
 
-const typingCheck = () => {
+const TypingCheck = () => {
   const [lettersFromWords, setLettersFromWords] = useState([""]);
   const [correctLetters, setCorrectLetters] = useState([""]);
   const [incorrectLetters, setIncorrectLetters] = useState([""]);
@@ -78,7 +78,7 @@ const useTyping = () => {
     seconds,
     setSeconds,
     setIsActive,
-  } = typingCheck();
+  } = TypingCheck();
   return {
     lettersFromWords,
     correctLetters,
