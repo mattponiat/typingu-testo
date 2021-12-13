@@ -3,6 +3,7 @@ import { useContext, useEffect } from "react";
 import { WordsContext } from "context/WordsContext";
 //JSON
 import wordsData from "randomWords.json";
+import { useTypingContext } from "context/store";
 
 export const useWordsAmount = () => {
   const [words, setWords] = useContext(WordsContext)!;
