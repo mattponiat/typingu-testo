@@ -7,23 +7,25 @@ import StyledText from "components-ui/atoms/StyledText";
 import StyledCaret from "components-ui/atoms/StyledCaret";
 //Styles
 import styled from "styled-components";
+//Hooks
+import { useEventListener } from "hooks/useEventListener";
 //Context
 import { useTypingContext } from "context/store";
 
 const Preview: React.FC = () => {
   const focusRef = useRef<HTMLDivElement>(null)!;
-  const { lettersFromWords, correctLetters, incorrectLetters } =
+  const { lettersFromWords, correctLetters, incorrectLetters, seconds } =
     useTypingContext();
 
-  /*
-  if (e.code !== "Enter") {
-      ref?.current?.focus();
+  useEventListener("keydown", (e: KeyboardEvent) => {
+    if (e.code === "Space" || e.code === "Tab") {
+      focusRef.current?.focus();
     }
-  */
+  });
 
   return (
     <Wrapper ref={focusRef} tabIndex={0}>
-      {/* <div>{seconds}</div> */}
+      <div>{seconds}</div>
       <StyledCorrectText>
         {correctLetters && correctLetters.join("")}
       </StyledCorrectText>
@@ -40,10 +42,9 @@ const Preview: React.FC = () => {
 
 const Wrapper = styled.div`
   position: relative;
-  margin: 5px;
+  min-height: auto;
   max-width: 35rem;
   font-size: 30px;
-  line-height: 30px;
   white-space: pre-wrap;
   overflow: clip;
 
