@@ -10,16 +10,20 @@ import styled from "styled-components";
 import { useWordsAmount } from "hooks/useWordsAmount";
 //Context
 import { WordsContext } from "context/WordsContext";
+import { useTypingContext } from "context/store";
 
 const TypingContainer: React.FC = () => {
   const { setWordsAmount } = useWordsAmount();
   const [words] = useContext(WordsContext)!;
+  const { setIsActive, setSeconds } = useTypingContext();
 
   //Randomize and restart words
   const restartTest = () => {
     for (let i = 0; i < words.length + 1; i++) {
       if (words.length === i) {
         setWordsAmount(i);
+        setIsActive(false);
+        setSeconds(0);
       }
     }
   };
