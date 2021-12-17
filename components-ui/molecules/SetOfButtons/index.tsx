@@ -10,8 +10,10 @@ import { useTypingContext } from "context/TypingCheck";
 const SetOfButtons = () => {
   const { setWordsAmount } = useWordsAmount();
   const { setIsActive, setSeconds } = useTypingContext();
+  const [wordsState, setWordsState] = React.useState(100);
 
   const setAndRestartWords = (amount: number) => {
+    setWordsState(amount); //todo change name
     setWordsAmount(amount);
     setIsActive(false);
     setSeconds(0);
@@ -19,10 +21,30 @@ const SetOfButtons = () => {
 
   return (
     <Wrapper>
-      <Button onClick={() => setAndRestartWords(10)}>10</Button>
-      <Button onClick={() => setAndRestartWords(25)}>25</Button>
-      <Button onClick={() => setAndRestartWords(50)}>50</Button>
-      <Button onClick={() => setAndRestartWords(100)}>100</Button>
+      <StyledButton
+        isActive={wordsState === 10}
+        onClick={() => setAndRestartWords(10)}
+      >
+        10
+      </StyledButton>
+      <StyledButton
+        isActive={wordsState === 25}
+        onClick={() => setAndRestartWords(25)}
+      >
+        25
+      </StyledButton>
+      <StyledButton
+        isActive={wordsState === 50}
+        onClick={() => setAndRestartWords(50)}
+      >
+        50
+      </StyledButton>
+      <StyledButton
+        isActive={wordsState === 100}
+        onClick={() => setAndRestartWords(100)}
+      >
+        100
+      </StyledButton>
     </Wrapper>
   );
 };
@@ -35,21 +57,18 @@ const Wrapper = styled.div`
   min-height: auto;
   margin-top: 20px;
 
-  button {
-    border: none;
-    background: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    font-size: 17px;
-    font-weight: 500;
-    color: hsl(150, 100%, 40%);
-  }
-
   button:hover,
   button:visited,
   button:focus {
     color: hsl(0, 0%, 60%);
   }
+`;
+
+const StyledButton = styled(Button)`
+  color: ${({ isActive }) =>
+    isActive ? "hsl(0, 0%, 60%)" : "hsl(150, 100%, 40%)"};
+  border-bottom: ${({ isActive }) =>
+    isActive ? "2px solid hsl(0, 0%, 60%)" : "none"};
 `;
 
 export default SetOfButtons;
