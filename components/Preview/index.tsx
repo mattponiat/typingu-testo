@@ -26,7 +26,7 @@ const Preview: React.FC = () => {
 
   return (
     <Wrapper ref={focusRef} tabIndex={0}>
-      {lettersFromWords.length === 0 && !isActive && <Result></Result>}
+      {lettersFromWords.length === 0 && <Result></Result>}
       <StyledCorrectText>
         {correctLetters && correctLetters.join("")}
       </StyledCorrectText>
