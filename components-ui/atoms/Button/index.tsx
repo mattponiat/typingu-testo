@@ -1,13 +1,16 @@
-import * as React from "react";
+import styled from "styled-components";
 
-interface Props {
-  onClick?: () => void;
-  className?: string;
-  ref?: any;
-}
-
-const Button: React.FC<Props> = ({ children, ...props }) => {
-  return <button {...props}>{children}</button>;
+type ButtonProps = {
+  isActive?: boolean;
 };
 
+const Button = styled.button<ButtonProps>`
+  border: none;
+  background: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: 500;
+  color: hsl(150, 100%, 40%);
+`;
 export default Button;
