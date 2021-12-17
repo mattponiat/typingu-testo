@@ -37,6 +37,7 @@ const TypingCheck = () => {
     }
   });
 
+  //Background timer functionality for counting wpm
   useEffect(() => {
     let interval: any = null;
     if (isActive) {
@@ -51,6 +52,7 @@ const TypingCheck = () => {
     return () => clearInterval(interval);
   }, [isActive, seconds]);
 
+  //Default starting and stopping the timer
   useEffect(() => {
     if (correctLetters.length > 0 || incorrectLetters.length > 0) {
       setIsActive(true);
@@ -66,6 +68,7 @@ const TypingCheck = () => {
     incorrectLetters,
     seconds,
     setSeconds,
+    isActive,
     setIsActive,
   };
 };
@@ -77,6 +80,7 @@ const useTyping = () => {
     incorrectLetters,
     seconds,
     setSeconds,
+    isActive,
     setIsActive,
   } = TypingCheck();
   return {
@@ -85,6 +89,7 @@ const useTyping = () => {
     incorrectLetters,
     seconds,
     setSeconds,
+    isActive,
     setIsActive,
   };
 };
