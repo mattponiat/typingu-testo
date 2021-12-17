@@ -42,13 +42,11 @@ const TypingCheck = () => {
     let interval: any = null;
     if (isActive) {
       interval = setInterval(() => {
-        setSeconds((seconds) => seconds + 1);
-      }, 1000);
+        setSeconds((seconds) => seconds + 0.1);
+      }, 100);
     } else if (!isActive && seconds !== 0) {
       clearInterval(interval);
     }
-    console.log(`seconds: ${seconds}`);
-    console.log(`is active: ${isActive}`);
     return () => clearInterval(interval);
   }, [isActive, seconds]);
 
@@ -73,34 +71,19 @@ const TypingCheck = () => {
   };
 };
 
-const useTyping = () => {
-  const {
-    lettersFromWords,
-    correctLetters,
-    incorrectLetters,
-    seconds,
-    setSeconds,
-    isActive,
-    setIsActive,
-  } = TypingCheck();
-  return {
-    lettersFromWords,
-    correctLetters,
-    incorrectLetters,
-    seconds,
-    setSeconds,
-    isActive,
-    setIsActive,
-  };
-};
-type UseTypingType = ReturnType<typeof useTyping>;
+// const useTyping = () => {
+//   return {
+//     ...TypingCheck(),
+//   };
+// };
+type UseTypingType = ReturnType<typeof TypingCheck>;
 
 const TypingContext = createContext<UseTypingType | null>(null);
 
 export const useTypingContext = () => useContext(TypingContext)!;
 
 export const TypingProvider = ({ children }: { children: React.ReactNode }) => (
-  <TypingContext.Provider value={useTyping()}>
+  <TypingContext.Provider value={{ ...TypingCheck() }}>
     {children}
   </TypingContext.Provider>
 );

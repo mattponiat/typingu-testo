@@ -39,7 +39,7 @@ export const WordCheker = (
     setCorrectLetters(correctLettersCopy);
   } else {
     const incorrectLettersCopy = [...incorrectLetters];
-    incorrectLettersCopy.push(key);
+    incorrectLettersCopy.push(lettersFromWords[incorrectLetters.length]);
     setIncorrectLetters(incorrectLettersCopy);
   }
 };
