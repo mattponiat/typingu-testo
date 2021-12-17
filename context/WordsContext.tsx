@@ -8,10 +8,10 @@ type contextType = [string[], stateUpdateType];
 export const WordsContext = createContext<contextType | null>(null);
 
 export const WordsProvider = ({ children }: { children: React.ReactNode }) => {
-  const [wordsState, setWordsState] = useState<string[]>([]);
+  const [words, setWords] = useState([""]);
 
   return (
-    <WordsContext.Provider value={[wordsState, setWordsState]}>
+    <WordsContext.Provider value={[words, setWords]}>
       {children}
     </WordsContext.Provider>
   );
