@@ -6,8 +6,7 @@ import styled from "styled-components";
 import { useTypingContext } from "context/TypingCheck";
 
 const Result: React.FC = () => {
-  const { correctLetters, lettersFromWords, seconds, setIsActive } =
-    useTypingContext();
+  const { correctLetters, seconds } = useTypingContext();
   const [result, setResult] = useState(0);
 
   useEffect(() => {
@@ -20,7 +19,7 @@ const Result: React.FC = () => {
 
   return (
     <Wrapper>
-      <Content>Your total wpm is: {result}</Content>
+      <Content>Wpm: {result}</Content>
     </Wrapper>
   );
 };
