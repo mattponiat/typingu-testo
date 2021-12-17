@@ -55,19 +55,7 @@ const ResetAndPreview = styled.div`
   justify-content: center;
 
   button {
-    border: none;
-    background: none;
-    padding: 5px 10px;
     margin-left: 15px;
-    cursor: pointer;
-    font-size: 17px;
-    font-weight: 500;
-    color: hsl(150, 100%, 40%);
-  }
-
-  button:hover,
-  button:focus-visible {
-    color: hsl(0, 0%, 60%);
   }
 `;
 

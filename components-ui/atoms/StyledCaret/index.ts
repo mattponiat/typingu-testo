@@ -3,7 +3,7 @@ import styled from "styled-components";
 const StyledCaret = styled.span`
   position: absolute;
   margin: 0;
-  height: 2.6rem;
+  height: 2.3rem;
   width: 2px;
   background-color: hsl(150, 100%, 40%);
   animation: fading 0.7s infinite alternate;
