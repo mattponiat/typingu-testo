@@ -1,20 +1,18 @@
-import { SetStateAction } from "react";
-
 export const WordCheker = (
   e: KeyboardEvent,
   correctLetters: string[],
   setCorrectLetters: {
-    (value: SetStateAction<string[]>): void;
+    (value: React.SetStateAction<string[]>): void;
     (arg0: string[]): void;
   },
   incorrectLetters: string[],
   setIncorrectLetters: {
-    (value: SetStateAction<string[]>): void;
+    (value: React.SetStateAction<string[]>): void;
     (arg0: string[]): void;
   },
   lettersFromWords: string[],
   setLettersFromWords: {
-    (value: SetStateAction<string[]>): void;
+    (value: React.SetStateAction<string[]>): void;
     (arg0: string[]): void;
   }
 ) => {
