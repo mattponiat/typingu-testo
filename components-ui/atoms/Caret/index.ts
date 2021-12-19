@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StyledCaret = styled.span`
+const Caret = styled.span`
   position: absolute;
   margin: 0;
   height: 2.3rem;
@@ -19,4 +19,4 @@ const StyledCaret = styled.span`
   }
 `;
 
-export default StyledCaret;
+export default Caret;

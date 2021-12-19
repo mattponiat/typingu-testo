@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-const StyledCorrectText = styled.span`
+const CorrectText = styled.span`
   padding: 0;
   color: green;
 `;
 
-export default StyledCorrectText;
+export default CorrectText;

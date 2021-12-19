@@ -1,10 +1,10 @@
 import * as React from "react";
 import { useRef } from "react";
 //Components
-import StyledCorrectText from "components-ui/atoms/StyledCorrectText";
-import StyledIncorrectText from "components-ui/atoms/StyledIncorrectText";
-import StyledText from "components-ui/atoms/StyledText";
-import StyledCaret from "components-ui/atoms/StyledCaret";
+import CorrectText from "components-ui/atoms/CorrectText";
+import IncorrectText from "components-ui/atoms/IncorrectText";
+import Text from "components-ui/atoms/Text";
+import Caret from "components-ui/atoms/Caret";
 //Styles
 import styled from "styled-components";
 //Hooks
@@ -25,19 +25,17 @@ const Preview: React.FC = () => {
 
   return (
     <Wrapper ref={focusRef} tabIndex={0}>
-      <StyledCorrectText>
-        {correctLetters && correctLetters.join("")}
-      </StyledCorrectText>
-      <StyledIncorrectText>
+      <CorrectText>{correctLetters && correctLetters.join("")}</CorrectText>
+      <IncorrectText>
         {incorrectLetters && incorrectLetters.join("")}
-      </StyledIncorrectText>
-      <StyledCaret />
-      <StyledText>{lettersFromWords.join("")}</StyledText>
+      </IncorrectText>
+      <Caret />
+      <Text>{lettersFromWords.join("")}</Text>
     </Wrapper>
   );
 };
 
-//Styled components
+// components
 
 const Wrapper = styled.div`
   min-height: auto;

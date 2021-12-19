@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-const StyledText = styled.span`
+const Text = styled.span`
   position: sticky;
 `;
 
-export default StyledText;
+export default Text;
