@@ -41,10 +41,11 @@ export default class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <meta lang="en"></meta>
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
-            href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap"
-            rel="stylesheet"
+            rel="preload"
+            href="public\fonts\CascadiaCodePL\CASCADIACODEPL.TTF"
+            as="font"
+            crossOrigin=""
           />
         </Head>
         <body>
