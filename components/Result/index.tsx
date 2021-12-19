@@ -9,13 +9,11 @@ const Result: React.FC = () => {
   const { correctLetters, seconds } = useTypingContext();
   const [result, setResult] = useState(0);
 
+  //Count words per minute
   useEffect(() => {
     let wpm = Math.round((correctLetters.length / 5 / seconds) * 60);
     setResult(wpm);
   }, [seconds]);
-
-  // wpm: total number of characters (including spaces) of words you got right divided by five
-  // then divided by the time starting from first character typed
 
   return (
     <Wrapper>
@@ -24,8 +22,15 @@ const Result: React.FC = () => {
   );
 };
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  min-height: auto;
+  width: 10rem;
+  margin-bottom: 15px;
+`;
 
-const Content = styled.span``;
+const Content = styled.span`
+  font-size: 25px;
+  font-weight: 600;
+`;
 
 export default Result;

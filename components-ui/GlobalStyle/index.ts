@@ -4,7 +4,7 @@ export const GlobalStyle = createGlobalStyle`
 
     *, *::before, *::after{
         box-sizing: border-box;
-        font-family: Arial, Helvetica, sans-serif;
+        font-family: 'Cascadia Code PL';
         user-select: none;
     }
 
@@ -17,4 +17,9 @@ export const GlobalStyle = createGlobalStyle`
         justify-content: center;
         align-items: center;
     }
+
+    @font-face {
+        font-family: 'Cascadia Code PL';
+        src: url('public\fonts\CascadiaCodePL\CASCADIACODEPL.TTF');
+}
 `;

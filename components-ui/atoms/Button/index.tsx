@@ -10,7 +10,6 @@ const Button = styled.button<ButtonProps>`
   padding: 5px 10px;
   cursor: pointer;
   font-size: 17px;
-  font-weight: 500;
   color: hsl(150, 100%, 40%);
 `;
 export default Button;

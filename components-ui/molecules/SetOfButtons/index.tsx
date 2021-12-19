@@ -5,6 +5,7 @@ import Button from "components-ui/atoms/Button";
 import { useWordsAmount } from "hooks/useWordsAmount";
 //Styles
 import styled from "styled-components";
+//Context
 import { useTypingContext } from "context/TypingCheck";
 
 const SetOfButtons = () => {
@@ -52,8 +53,9 @@ const SetOfButtons = () => {
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  gap: 20px;
   align-items: center;
-  width: 15vw;
+  max-width: 30rem;
   min-height: auto;
   margin-top: 20px;
 
@@ -68,7 +70,7 @@ const StyledButton = styled(Button)`
   color: ${({ isActive }) =>
     isActive ? "hsl(0, 0%, 60%)" : "hsl(150, 100%, 40%)"};
   border-bottom: ${({ isActive }) =>
-    isActive ? "2px solid hsl(0, 0%, 60%)" : "none"};
+    isActive ? "3px solid hsl(0, 0%, 60%)" : "none"};
 `;
 
 export default SetOfButtons;

@@ -4,6 +4,7 @@ import { useContext } from "react";
 import Preview from "components/Preview";
 import SetOfButtons from "components-ui/molecules/SetOfButtons";
 import Button from "components-ui/atoms/Button";
+import Result from "components/Result";
 //Styles
 import styled from "styled-components";
 //Hooks
@@ -15,7 +16,7 @@ import { useTypingContext } from "context/TypingCheck";
 const TypingContainer: React.FC = () => {
   const { setWordsAmount } = useWordsAmount();
   const [words] = useContext(WordsContext)!;
-  const { setIsActive, setSeconds } = useTypingContext();
+  const { setIsActive, setSeconds, lettersFromWords } = useTypingContext();
 
   //Randomize and restart words
   const restartTest = () => {
@@ -30,6 +31,7 @@ const TypingContainer: React.FC = () => {
 
   return (
     <Wrapper>
+      {lettersFromWords.length === 0 && <Result></Result>}
       <ResetAndPreview>
         <Preview />
         <Button onClick={restartTest}>Redo</Button>
@@ -49,6 +51,7 @@ const Wrapper = styled.div`
 `;
 
 const ResetAndPreview = styled.div`
+  min-height: auto;
   margin: 0 5rem;
   display: flex;
   align-items: center;

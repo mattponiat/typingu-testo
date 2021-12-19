@@ -5,7 +5,6 @@ import StyledCorrectText from "components-ui/atoms/StyledCorrectText";
 import StyledIncorrectText from "components-ui/atoms/StyledIncorrectText";
 import StyledText from "components-ui/atoms/StyledText";
 import StyledCaret from "components-ui/atoms/StyledCaret";
-import Result from "components/Result";
 //Styles
 import styled from "styled-components";
 //Hooks
@@ -15,7 +14,7 @@ import { useTypingContext } from "context/TypingCheck";
 
 const Preview: React.FC = () => {
   const focusRef = useRef<HTMLDivElement>(null)!;
-  const { lettersFromWords, correctLetters, incorrectLetters, isActive } =
+  const { lettersFromWords, correctLetters, incorrectLetters } =
     useTypingContext();
 
   useEventListener("keydown", (e: KeyboardEvent) => {
@@ -26,7 +25,6 @@ const Preview: React.FC = () => {
 
   return (
     <Wrapper ref={focusRef} tabIndex={0}>
-      {lettersFromWords.length === 0 && <Result></Result>}
       <StyledCorrectText>
         {correctLetters && correctLetters.join("")}
       </StyledCorrectText>
@@ -42,12 +40,10 @@ const Preview: React.FC = () => {
 //Styled components
 
 const Wrapper = styled.div`
-  position: relative;
   min-height: auto;
   max-width: 35rem;
   font-size: 30px;
   white-space: pre-wrap;
-  overflow: clip;
 
   :focus-visible {
     outline: none;
