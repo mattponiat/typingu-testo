@@ -20,7 +20,7 @@ export const GlobalStyle = createGlobalStyle`
 
     @font-face {
         font-family: 'Cascadia Code PL';
-        src: url('public\fonts\CascadiaCodePL\CASCADIACODEPL.TTF');
+        src: url('/fonts/CascadiaCodePL/CASCADIACODEPL.TTF');
         font-display: swap;
 }
 `;

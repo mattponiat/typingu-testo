@@ -43,7 +43,7 @@ export default class MyDocument extends Document {
           <meta lang="en"></meta>
           <link
             rel="preload"
-            href="public\fonts\CascadiaCodePL\CASCADIACODEPL.TTF"
+            href="/fonts/CascadiaCodePL/CASCADIACODEPL.TTF"
             as="font"
             crossOrigin=""
           />

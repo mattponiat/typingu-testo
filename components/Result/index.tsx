@@ -30,7 +30,6 @@ const Wrapper = styled.div`
 
 const Content = styled.span`
   font-size: 25px;
-  font-weight: 600;
 `;
 
 export default Result;
