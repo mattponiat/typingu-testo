@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useContext } from "react";
 //Components
 import Preview from "components/Preview";
 import SetOfButtons from "components-ui/molecules/SetOfButtons";
@@ -10,15 +9,15 @@ import styled from "styled-components";
 //Hooks
 import { useWordsAmount } from "hooks/useWordsAmount";
 //Context
-import { WordsContext } from "context/WordsContext";
+import { useWordsContext } from "context/WordsContext";
 import { useTypingContext } from "context/TypingCheck";
 
 const TypingContainer: React.FC = () => {
   const { setWordsAmount } = useWordsAmount();
-  const [words] = useContext(WordsContext)!;
+  const [words] = useWordsContext();
   const { setIsActive, setSeconds, lettersFromWords } = useTypingContext();
 
-  //Randomize and restart words
+  //Stop the background timer, randomize and restart words
   const restartTest = () => {
     for (let i = 0; i < words.length + 1; i++) {
       if (words.length === i) {

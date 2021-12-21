@@ -1,11 +1,11 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 //Context
-import { WordsContext } from "context/WordsContext";
+import { useWordsContext } from "context/WordsContext";
 //JSON
 import wordsData from "randomWords.json";
 
 export const useWordsAmount = () => {
-  const [words, setWords] = useContext(WordsContext)!;
+  const [words, setWords] = useWordsContext();
   const tempArray = [] as string[];
   const lang = "english"; //Will use localStorage later, for now only English
 

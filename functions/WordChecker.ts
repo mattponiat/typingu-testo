@@ -18,6 +18,7 @@ export const WordCheker = (
 ) => {
   const key = e.key;
 
+  //Delete the incorrect words by using Backspace or Delete
   if (incorrectLetters.length > 0) {
     if (key === "Backspace" || key === "Delete") {
       const incorrectLettersCopy = [...incorrectLetters];
@@ -26,8 +27,10 @@ export const WordCheker = (
     }
   }
 
+  //Words like Tab, Alt, Ctrl etc. don't show up in the typing test
   if (e.code.slice(0, 3) !== "Key" && e.code.slice(0, 3) !== "Spa") return;
 
+  //The main functionality
   if (key === lettersFromWords[0] && incorrectLetters.length === 0) {
     const remainingLetters = [...lettersFromWords];
     remainingLetters.shift();

@@ -17,6 +17,7 @@ const Preview: React.FC = () => {
   const { lettersFromWords, correctLetters, incorrectLetters } =
     useTypingContext();
 
+  //Event listener for focusing the Wrapper div
   useEventListener("keydown", (e: KeyboardEvent) => {
     if (e.code === "Space" || e.code === "Tab") {
       focusRef.current?.focus();

@@ -2,10 +2,10 @@ import * as React from "react";
 import { useEffect, useState, useContext, createContext } from "react";
 //Hooks
 import { useEventListener } from "hooks/useEventListener";
+//Context
+import { useWordsContext } from "./WordsContext";
 //Functions
 import { WordCheker } from "functions/WordChecker";
-//Context
-import { WordsContext } from "./WordsContext";
 
 const TypingCheck = () => {
   const [lettersFromWords, setLettersFromWords] = useState([""]);
@@ -13,7 +13,7 @@ const TypingCheck = () => {
   const [incorrectLetters, setIncorrectLetters] = useState([""]);
   const [seconds, setSeconds] = useState(0);
   const [isActive, setIsActive] = useState(false);
-  const [words] = useContext(WordsContext)!;
+  const [words] = useWordsContext();
 
   //Words initial setup
   useEffect(() => {
@@ -22,7 +22,7 @@ const TypingCheck = () => {
     setIncorrectLetters([]);
   }, [words]);
 
-  //Keydown event listener calling word checking function
+  //Keydown event listener for the word checking function
   useEventListener("keydown", (e: KeyboardEvent) => {
     if (lettersFromWords.length) {
       WordCheker(
@@ -37,7 +37,7 @@ const TypingCheck = () => {
     }
   });
 
-  //Background timer functionality for counting wpm
+  //Background timer
   useEffect(() => {
     let interval: any = null;
     if (isActive) {
@@ -50,7 +50,7 @@ const TypingCheck = () => {
     return () => clearInterval(interval);
   }, [isActive, seconds]);
 
-  //Default starting and stopping the timer
+  //Default start and stop for the background timer
   useEffect(() => {
     if (correctLetters.length > 0 || incorrectLetters.length > 0) {
       setIsActive(true);
@@ -71,11 +71,7 @@ const TypingCheck = () => {
   };
 };
 
-// const useTyping = () => {
-//   return {
-//     ...TypingCheck(),
-//   };
-// };
+//Context for the main function
 type UseTypingType = ReturnType<typeof TypingCheck>;
 
 const TypingContext = createContext<UseTypingType | null>(null);

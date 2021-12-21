@@ -1,10 +1,10 @@
 import * as React from "react";
 //Components
 import Button from "components-ui/atoms/Button";
-//Hooks
-import { useWordsAmount } from "hooks/useWordsAmount";
 //Styles
 import styled from "styled-components";
+//Hooks
+import { useWordsAmount } from "hooks/useWordsAmount";
 //Context
 import { useTypingContext } from "context/TypingCheck";
 
@@ -13,6 +13,7 @@ const SetOfButtons = () => {
   const { setIsActive, setSeconds } = useTypingContext();
   const [wordsState, setWordsState] = React.useState(100);
 
+  //Stop the background timer, randomize and set words to the given amount
   const setAndRestartWords = (amount: number) => {
     setWordsState(amount); //todo change name
     setWordsAmount(amount);
@@ -58,12 +59,6 @@ const Wrapper = styled.div`
   max-width: 30rem;
   min-height: auto;
   margin-top: 20px;
-
-  button:hover,
-  button:visited,
-  button:focus {
-    color: hsl(0, 0%, 60%);
-  }
 `;
 
 const StyledButton = styled(Button)`
@@ -71,6 +66,12 @@ const StyledButton = styled(Button)`
     isActive ? "hsl(0, 0%, 60%)" : "hsl(150, 100%, 40%)"};
   border-bottom: ${({ isActive }) =>
     isActive ? "3px solid hsl(0, 0%, 60%)" : "none"};
+
+  :hover,
+  :visited,
+  :focus {
+    color: hsl(0, 0%, 60%);
+  }
 `;
 
 export default SetOfButtons;
