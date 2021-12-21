@@ -4,7 +4,7 @@ export const GlobalStyle = createGlobalStyle`
 
     *, *::before, *::after{
         box-sizing: border-box;
-        font-family: 'Cascadia Code PL';
+        font-family: 'Cascadia Code PL', monospace;
         user-select: none;
     }
 
