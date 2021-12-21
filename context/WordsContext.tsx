@@ -1,11 +1,13 @@
 import * as React from "react";
-import { useState, createContext } from "react";
+import { useState, createContext, useContext } from "react";
 
 type stateUpdateType = React.Dispatch<React.SetStateAction<string[]>>;
 
 type contextType = [string[], stateUpdateType];
 
-export const WordsContext = createContext<contextType | null>(null);
+const WordsContext = createContext<contextType | null>(null);
+
+export const useWordsContext = () => useContext(WordsContext)!;
 
 export const WordsProvider = ({ children }: { children: React.ReactNode }) => {
   const [words, setWords] = useState([""]);
