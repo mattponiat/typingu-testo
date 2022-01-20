@@ -3,8 +3,9 @@ import { useRef } from "react";
 //Components
 import CorrectText from "components-ui/atoms/CorrectText";
 import IncorrectText from "components-ui/atoms/IncorrectText";
-import Text from "components-ui/atoms/Text";
+import Text from "components-ui/atoms/Words";
 import Caret from "components-ui/atoms/Caret";
+import Word from "components-ui/atoms/Word";
 //Styles
 import styled from "styled-components";
 //Hooks
@@ -14,8 +15,7 @@ import { useTypingContext } from "context/TypingCheck";
 
 const Preview: React.FC = () => {
   const focusRef = useRef<HTMLDivElement>(null)!;
-  const { lettersFromWords, correctLetters, incorrectLetters } =
-    useTypingContext();
+  const { correctLetters, incorrectLetters, words } = useTypingContext();
 
   //Event listener for focusing the Wrapper div
   useEventListener("keydown", (e: KeyboardEvent) => {
@@ -26,21 +26,27 @@ const Preview: React.FC = () => {
 
   return (
     <Wrapper ref={focusRef} tabIndex={0}>
-      <CorrectText>{correctLetters && correctLetters.join("")}</CorrectText>
       <IncorrectText>
         {incorrectLetters && incorrectLetters.join("")}
       </IncorrectText>
-      <Caret />
-      <Text>{lettersFromWords.join("")}</Text>
+      <Text>
+        <CorrectText>{correctLetters && correctLetters.join("")}</CorrectText>
+        <Caret />
+        {words.map((elem, index) => {
+          return (
+            <Word key={`${elem}-${index + 1}`}>
+              <span>{elem}</span>
+            </Word>
+          );
+        })}
+      </Text>
     </Wrapper>
   );
 };
 
-// components
-
 const Wrapper = styled.div`
-  min-height: auto;
-  max-width: 35rem;
+  height: auto;
+  width: 100%;
   font-size: 30px;
   white-space: pre-wrap;
 

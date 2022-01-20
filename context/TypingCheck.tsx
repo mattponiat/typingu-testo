@@ -3,23 +3,28 @@ import { useEffect, useState, useContext, createContext } from "react";
 //Hooks
 import { useEventListener } from "hooks/useEventListener";
 //Context
-import { useWordsContext } from "./WordsContext";
+import { useWordsContext } from "context/WordsContext";
 //Functions
 import { WordCheker } from "functions/WordChecker";
 
 const TypingCheck = () => {
+  const [wordsContext] = useWordsContext();
+  const [words, setWords] = useState([""]);
   const [lettersFromWords, setLettersFromWords] = useState([""]);
   const [correctLetters, setCorrectLetters] = useState([""]);
   const [incorrectLetters, setIncorrectLetters] = useState([""]);
   const [seconds, setSeconds] = useState(0);
   const [isActive, setIsActive] = useState(false);
-  const [words] = useWordsContext();
 
   //Words initial setup
   useEffect(() => {
-    setLettersFromWords(words.join(" ").split(""));
+    setWords(wordsContext);
     setCorrectLetters([]);
     setIncorrectLetters([]);
+  }, [wordsContext]);
+
+  useEffect(() => {
+    setLettersFromWords(words.join(" ").split(""));
   }, [words]);
 
   //Keydown event listener for the word checking function
@@ -32,7 +37,7 @@ const TypingCheck = () => {
         incorrectLetters,
         setIncorrectLetters,
         lettersFromWords,
-        setLettersFromWords
+        setWords
       );
     }
   });
@@ -61,6 +66,7 @@ const TypingCheck = () => {
   }, [lettersFromWords, correctLetters, incorrectLetters]);
 
   return {
+    words,
     lettersFromWords,
     correctLetters,
     incorrectLetters,

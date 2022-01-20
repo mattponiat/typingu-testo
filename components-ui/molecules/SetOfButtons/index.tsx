@@ -62,6 +62,7 @@ const Wrapper = styled.div`
 `;
 
 const StyledButton = styled(Button)`
+  position: relative;
   color: ${({ isActive }) =>
     isActive ? "hsl(0, 0%, 60%)" : "hsl(150, 100%, 40%)"};
   border-bottom: ${({ isActive }) =>
