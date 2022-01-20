@@ -6,15 +6,16 @@ const Caret = styled.span`
   height: 2.3rem;
   width: 2px;
   background-color: hsl(150, 100%, 40%);
-  animation: fading 0.7s infinite alternate;
+  animation: fading 1s infinite;
   word-wrap: break-word;
 
   @keyframes fading {
-    from {
+    0%,
+    100% {
       opacity: 0;
     }
-    to {
-      opacity: 0.8;
+    50% {
+      opacity: 1;
     }
   }
 `;

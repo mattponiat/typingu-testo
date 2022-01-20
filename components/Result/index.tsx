@@ -25,7 +25,7 @@ const Result: React.FC = () => {
 const Wrapper = styled.div`
   min-height: auto;
   width: 10rem;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 `;
 
 const Content = styled.span`
