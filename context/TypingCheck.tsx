@@ -3,7 +3,7 @@ import { useEffect, useState, useContext, createContext } from "react";
 //Hooks
 import { useEventListener } from "hooks/useEventListener";
 //Context
-import { useWordsContext } from "./WordsContext";
+import { useWordsContext } from "context/WordsContext";
 //Functions
 import { WordCheker } from "functions/WordChecker";
 
