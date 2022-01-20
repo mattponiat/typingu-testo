@@ -1,5 +1,5 @@
 //Components
-import TypingContainer from "components-ui/organisms/TypingContainer";
+import TypingContainer from "components/organisms/TypingContainer";
 //Context
 import { WordsProvider } from "context/WordsContext";
 import { TypingProvider } from "context/TypingCheck";
