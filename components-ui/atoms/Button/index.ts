@@ -10,7 +10,7 @@ const Button = styled.button<ButtonProps>`
   padding: 5px 10px;
   cursor: pointer;
   font-size: 17px;
-  color: hsl(150, 100%, 40%);
+  color: hsl(150, 100%, 30%);
 
   :hover,
   :focus {

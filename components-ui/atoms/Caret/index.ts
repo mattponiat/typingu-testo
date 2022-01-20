@@ -5,7 +5,7 @@ const Caret = styled.span`
   margin: 0;
   height: 2.3rem;
   width: 2px;
-  background-color: hsl(150, 100%, 40%);
+  background-color: hsl(150, 100%, 30%);
   animation: fading 1s infinite;
   word-wrap: break-word;
 

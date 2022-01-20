@@ -16,6 +16,7 @@ export const GlobalStyle = createGlobalStyle`
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        background-color: hsl(190, 70%, 90%);
     }
 
     @font-face {
