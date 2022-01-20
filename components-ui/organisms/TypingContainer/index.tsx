@@ -1,64 +1,30 @@
 import * as React from "react";
 //Components
-import Preview from "components/Preview";
 import SetOfButtons from "components-ui/molecules/SetOfButtons";
-import Button from "components-ui/atoms/Button";
 import Result from "components/Result";
+import ResetAndPreview from "components-ui/molecules/ResetAndPreview";
 //Styles
 import styled from "styled-components";
-//Hooks
-import { useWordsAmount } from "hooks/useWordsAmount";
-//Context
-import { useWordsContext } from "context/WordsContext";
 import { useTypingContext } from "context/TypingCheck";
 
 const TypingContainer: React.FC = () => {
-  const { setWordsAmount } = useWordsAmount();
-  const [words] = useWordsContext();
-  const { setIsActive, setSeconds, lettersFromWords } = useTypingContext();
-
-  //Stop the background timer, randomize and restart words
-  const restartTest = () => {
-    for (let i = 0; i < words.length + 1; i++) {
-      if (words.length === i) {
-        setWordsAmount(i);
-        setIsActive(false);
-        setSeconds(0);
-      }
-    }
-  };
+  const { lettersFromWords } = useTypingContext();
 
   return (
     <Wrapper>
       {lettersFromWords.length === 0 && <Result></Result>}
-      <ResetAndPreview>
-        <Preview />
-        <Button onClick={restartTest}>Redo</Button>
-      </ResetAndPreview>
+      <ResetAndPreview />
       <SetOfButtons />
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
-  min-height: auto;
+  height: fit-content;
   width: 100vw;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-`;
-
-const ResetAndPreview = styled.div`
-  min-height: auto;
-  margin: 0 5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  button {
-    margin-left: 15px;
-  }
 `;
 
 export default TypingContainer;
