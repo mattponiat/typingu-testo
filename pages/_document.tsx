@@ -47,6 +47,7 @@ export default class MyDocument extends Document {
             as="font"
             crossOrigin=""
           />
+          <title>TypinguTesto</title>
         </Head>
         <body>
           <Main />
